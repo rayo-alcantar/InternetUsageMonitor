@@ -12,8 +12,12 @@ import addonHandler
 addonHandler.initTranslation()
 import sys
 import os
-from psutil import net_io_counters
+current_dir = os.path.dirname(__file__)
+parent_dir = os.path.dirname(current_dir)
+if parent_dir not in sys.path:
+    sys.path.append(parent_dir)
 
+from psutil import net_io_counters
 # Decorador para deshabilitar en modo seguro
 def disableInSecureMode(decoratedCls):
     if globalVars.appArgs.secure:
