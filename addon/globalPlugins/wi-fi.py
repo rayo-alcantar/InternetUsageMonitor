@@ -12,9 +12,7 @@ import addonHandler
 addonHandler.initTranslation()
 import sys
 import os
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'lib'))
-import psutil
-
+from psutil import net_io_counters
 
 # Decorador para deshabilitar en modo seguro
 def disableInSecureMode(decoratedCls):
@@ -51,14 +49,14 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
             return
         self.monitoring = True
         self.start_time = time.time()
-        self.start_bytes = psutil.net_io_counters().bytes_sent + psutil.net_io_counters().bytes_recv
+        self.start_bytes = net_io_counters().bytes_sent + net_io_counters().bytes_recv
         ui.message(_("Monitoreo de uso de internet iniciado."))
 
     def stopMonitoring(self):
         if not self.monitoring:
             return
         end_time = time.time()
-        end_bytes = psutil.net_io_counters().bytes_sent + psutil.net_io_counters().bytes_recv
+        end_bytes = net_io_counters().bytes_sent + net_io_counters().bytes_recv
         total_bytes = end_bytes - self.start_bytes
         total_mb = total_bytes / (1024 * 1024)
         total_time = (end_time - self.start_time) / 60
