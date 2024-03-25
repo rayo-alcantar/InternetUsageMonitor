@@ -5,17 +5,21 @@
 
 import globalPluginHandler
 import globalVars
-
 import scriptHandler
 import ui
-import psutil
 import time
 import addonHandler
 addonHandler.initTranslation()
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'lib'))
+import psutil
+
+
 # Decorador para deshabilitar en modo seguro
 def disableInSecureMode(decoratedCls):
     if globalVars.appArgs.secure:
-        return globalPluginHandler.GlobalPlugin
+        return lambda *args, **kwargs: None
     return decoratedCls
 
 @disableInSecureMode
