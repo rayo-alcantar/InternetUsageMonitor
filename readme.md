@@ -12,6 +12,10 @@ Al iniciar el monitoreo, el complemento registra el tiempo actual y la cantidad 
 
 ## Changelog
 
+### 1.0.1
+
+Se quita la compatibilidad con versiones inferiores a NVDA 2024.1 por ahora.
+
 ### 1.0
 
 Versión inicial del compelmento.
