@@ -24,17 +24,18 @@ del sys.path[-2:]
 # Decorador para deshabilitar en modo seguro
 def disableInSecureMode(decoratedCls):
     if globalVars.appArgs.secure:
-        return lambda *args, **kwargs: None
+        return globalPluginHandler.GlobalPlugin
     return decoratedCls
 
 @disableInSecureMode
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
-    scriptCategory = _("Medir Wi-Fi")
+    scriptCategory = _("WiFiMonitor")
     
     def __init__(self):
         # Verifica si NVDA se ejecuta en un entorno seguro
         if globalVars.appArgs.secure:
             return
+
         super(GlobalPlugin, self).__init__()
         self.monitoring = False
         self.start_time = None
