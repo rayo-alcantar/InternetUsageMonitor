@@ -23,7 +23,7 @@ addon_info = {
 	"addon_summary": _("InternetUsageMonitor"),
 	# Add-on description
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
-	"addon_description": _("""Complemento para NVDA que monitorea el uso de internet."),
+	"addon_description": _("""Complemento para NVDA que monitorea el uso de internet."""),
 	# version
 	"addon_version": "1.2.2",
 	# Author(s)
