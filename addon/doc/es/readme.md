@@ -6,7 +6,7 @@
 
 ## Cómo Funciona
 
-Una vez activado, **WiFiMonitor** comienza a rastrear el uso de datos de la conexión a internet del usuario. El seguimiento se inicia o se detiene mediante un atajo de teclado específico (`Alt + NVDA + W (personalizable en gestos de entrada) bajo la categoría medir wi-fi.
+Una vez activado, **WiFiMonitor** comienza a rastrear el uso de datos de la conexión a internet del usuario. El seguimiento se inicia o se detiene mediante un atajo de teclado específico (`Alt + NVDA + W (personalizable en gestos de entrada) bajo la categoría WiFiMonitor.
 
 Al iniciar el monitoreo, el complemento registra el tiempo actual y la cantidad de datos enviados y recibidos en ese momento. Al detener el monitoreo, calcula la diferencia de tiempo y de datos para determinar el total de megabytes utilizados durante la sesión de monitoreo, y verbaliza esta información al usuario a través de NVDA.
 

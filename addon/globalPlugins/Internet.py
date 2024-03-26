@@ -29,7 +29,7 @@ def disableInSecureMode(decoratedCls):
 
 @disableInSecureMode
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
-    scriptCategory = _("WiFiMonitor")
+    scriptCategory = _("InternetUsageMonitor")
     
     def __init__(self):
         # Verifica si NVDA se ejecuta en un entorno seguro

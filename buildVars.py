@@ -16,11 +16,11 @@ def _(arg):
 # Add-on information variables
 addon_info = {
 	# add-on Name/identifier, internal for NVDA
-	"addon_name": "WiFiMonitor",
+	"addon_name": "InternetUsageMonitor",
 	# Add-on summary, usually the user visible name of the addon.
 	# Translators: Summary for this add-on
 	# to be shown on installation and add-on information found in Add-ons Manager.
-	"addon_summary": _("WiFiMonitor"),
+	"addon_summary": _("InternetUsageMonitor"),
 	# Add-on description
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description": _("""Complemento para NVDA que monitorea el uso de WiFi."""),
@@ -29,9 +29,9 @@ addon_info = {
 	# Author(s)
 	"addon_author": "Angel Alcántar<rayoalcantar@gmail.com>",
 	# URL for the add-on documentation support
-	"addon_url": "https://github.com/rayo-alcantar/wifimonitor/",
+	"addon_url": "https://github.com/rayo-alcantar/InternetUsageMonitor/",
 	# URL for the add-on repository where the source code can be found
-	"addon_sourceURL": "https://github.com/rayo-alcantar/wifimonitor",
+	"addon_sourceURL": "https://github.com/rayo-alcantar/InternetUsageMonitor",
 	# Documentation file name
 	"addon_docFileName": "readme.html",
 	# Minimum NVDA version supported (e.g. "2018.3.0", minor version is optional)
