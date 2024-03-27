@@ -25,7 +25,7 @@ addon_info = {
 	# Translators: Long description to be shown for this add-on on add-on information from add-ons manager
 	"addon_description": _("""Complemento para NVDA que monitorea el uso de internet."""),
 	# version
-	"addon_version": "1.2.2",
+	"addon_version": "1.2.3",
 	# Author(s)
 	"addon_author": "Angel Alcántar<rayoalcantar@gmail.com>",
 	# URL for the add-on documentation support

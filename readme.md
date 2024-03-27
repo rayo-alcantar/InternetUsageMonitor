@@ -12,6 +12,10 @@ Al iniciar el monitoreo, el complemento registra el tiempo actual y la cantidad 
 
 ## Changelog
 
+### 1.2.3
+
+Se arregló la presentación de los segundos.
+
 ### 1.1.1
 
 Gracias a Héctor Benítez se arregló el problema con la librería.
