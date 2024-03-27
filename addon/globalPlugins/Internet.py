@@ -67,8 +67,10 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         end_bytes = psutil.net_io_counters().bytes_sent + psutil.net_io_counters().bytes_recv
         total_bytes = end_bytes - self.start_bytes
         total_mb = total_bytes / (1024 * 1024)
-        total_time = (end_time - self.start_time) / 60
-        ui.message(_("Total de uso de internet: {:.2f} MB en {:.2f} minutos.").format(total_mb, total_time))
+        total_seconds = end_time - self.start_time
+        minutes = int(total_seconds // 60)
+        seconds = int(total_seconds % 60)
+        ui.message(_("Total de uso de internet: {:.2f} MB en {} minutos y {} segundos.").format(total_mb, minutes, seconds))
         self.monitoring = False
 
     def terminate(self):
