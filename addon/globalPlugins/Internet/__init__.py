@@ -29,19 +29,17 @@ def disableInSecureMode(decoratedCls):
 
 @disableInSecureMode
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
+    # translators: Category name for all scripts provided by the Internet Usage Monitor add-on.
     scriptCategory = _("InternetUsageMonitor")
     
     def __init__(self):
-        # Verifica si NVDA se ejecuta en un entorno seguro
-        if globalVars.appArgs.secure:
-            return
-
         super(GlobalPlugin, self).__init__()
         self.monitoring = False
         self.start_time = None
         self.start_bytes = None
 
     @scriptHandler.script(
+        # translators: Description for a script that toggles the monitoring of internet usage on or off.
         description=_("Comienza o detiene el monitoreo del uso de internet."),
         gesture="kb:alt+NVDA+w",
         category=scriptCategory
@@ -58,6 +56,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         self.monitoring = True
         self.start_time = time.time()
         self.start_bytes = psutil.net_io_counters().bytes_sent + psutil.net_io_counters().bytes_recv
+        # translators: Announced to the user when the monitoring of internet usage starts.
         ui.message(_("Monitoreo de uso de internet iniciado."))
 
     def stopMonitoring(self):
@@ -70,8 +69,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         total_seconds = end_time - self.start_time
         minutes = int(total_seconds // 60)
         seconds = int(total_seconds % 60)
+        # translators: Announced to the user when the monitoring of internet usage stops, showing the total internet usage in 
         ui.message(_("Total de uso de internet: {:.2f} MB en {} minutos y {} segundos.").format(total_mb, minutes, seconds))
         self.monitoring = False
+        self.start_time = None
+        self.start_bytes = None
 
     def terminate(self):
         if self.monitoring:
