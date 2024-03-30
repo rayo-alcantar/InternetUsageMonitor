@@ -6,11 +6,17 @@
 
 ## Cómo Funciona
 
-Una vez activado, **InternetUsageMonitor** comienza a rastrear el uso de datos de la conexión a internet del usuario. El seguimiento se inicia o se detiene mediante un atajo de teclado específico (`Alt + NVDA + W (personalizable en gestos de entrada) bajo la categoría InternetUsageMonitor.
+Una vez activado, **InternetUsageMonitor** comienza a rastrear el uso de datos de la conexión a internet del usuario. El seguimiento se inicia o se detiene mediante un atajo de teclado específico (`Alt + NVDA + W`) personalizable en gestos de entrada bajo la categoría InternetUsageMonitor.
 
 Al iniciar el monitoreo, el complemento registra el tiempo actual y la cantidad de datos enviados y recibidos en ese momento. Al detener el monitoreo, calcula la diferencia de tiempo y de datos para determinar el total de megabytes utilizados durante la sesión de monitoreo, y verbaliza esta información al usuario a través de NVDA.
 
 ## Changelog
+
+### 1.3
+
+* Se corrigeron errores de ortografía en el readme.
+* Se eliminaron líneas innecesarias en el código.
+* Se añadieron comentarios para traductores.
 
 ### 1.2.3
 
@@ -26,7 +32,7 @@ Se quita la compatibilidad con versiones inferiores a NVDA 2024.1 por ahora.
 
 ### 1.0
 
-Versión inicial del compelmento.
+Versión inicial del complemento.
 
 ## Nota del autor
 
