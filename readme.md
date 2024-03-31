@@ -12,6 +12,10 @@ Al iniciar el monitoreo, el complemento registra el tiempo actual y la cantidad 
 
 ## Changelog
 
+## 1.3.1
+
+Se añade traducción al inglés.
+
 ### 1.3
 
 * Se corrigeron errores de ortografía en el readme.
