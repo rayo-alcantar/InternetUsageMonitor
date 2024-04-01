@@ -12,6 +12,9 @@ Al iniciar el monitoreo, se puede pulsar el mismo atajo y se dirá la cantidad d
 
 ## Changelog
 
+### 2.1
+
+Se añade la funcionalidad para presentar correctamente las horas.
 
 ### 2.0.1
 
