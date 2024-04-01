@@ -66,20 +66,30 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         # translators: Message announced when internet usage monitoring starts.
         ui.message(_("Monitoreo de uso de Internet iniciado."))
 
-
     def reportUsage(self, stopMonitoring=False):
         current_time = time.time()
         current_bytes = psutil.net_io_counters().bytes_sent + psutil.net_io_counters().bytes_recv
         total_seconds = int(current_time - self.start_time)
-        total_minutes = total_seconds // 60  # Calcula los minutos totales desde los segundos
-        remaining_seconds = total_seconds % 60  # Calcula los segundos restantes después de convertir a minutos
+        
+        # Convert total time to hours, minutes, and seconds
+        hours, remainder = divmod(total_seconds, 3600)
+        minutes, seconds = divmod(remainder, 60)
         total_mb = (current_bytes - self.start_bytes) / (1024 * 1024)
-        #Translators: Explain that Internet usage will be reported in MB and time in minutes and seconds.
-        ui.message(_("Uso de Internet: {:.2f} MB, Tiempo: {} minutos y {} segundos").format(total_mb, total_minutes, remaining_seconds))
+        
+        # Check if the total time is more than an hour for reporting
+        if hours > 0:
+            # Translators: Message announced when internet usage is reported. Displays usage in MB, and time in hours, minutes, and seconds.
+            message = _("Uso de Internet: {:.2f} MB, Tiempo: {} horas, {} minutos y {} segundos").format(total_mb, hours, minutes, seconds)
+        else:
+            # Translators: Message announced when internet usage is reported. Displays usage in MB, and time in minutes and seconds.
+            message = _("Uso de Internet: {:.2f} MB, Tiempo: {} minutos y {} segundos").format(total_mb, minutes, seconds)
+        
+        ui.message(message)
         if stopMonitoring:
             self.monitoring = False
-            #Translators: Notifies the user that Internet usage monitoring has been stopped.
+            # Translators: Notifies the user that Internet usage monitoring has been stopped.
             ui.message(_("Monitoreo detenido."))
+
     def terminate(self):
         if self.monitoring:
             self.reportUsage(stopMonitoring=True)
