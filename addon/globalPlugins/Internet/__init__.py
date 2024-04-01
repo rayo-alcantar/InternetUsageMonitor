@@ -29,6 +29,7 @@ def disableInSecureMode(decoratedCls):
 
 @disableInSecureMode
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
+    # translators: Description for the script that toggles monitoring of internet usage. The script starts monitoring if it's not already happening, and stops it if it's in progress. A double press will stop the monitoring and report the usage.
     scriptCategory = _("Internet usage monitor")
 
     def __init__(self):
@@ -59,6 +60,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         self.monitoring = True
         self.start_time = time.time()
         self.start_bytes = psutil.net_io_counters().bytes_sent + psutil.net_io_counters().bytes_recv
+        # translators: Message announced when internet usage monitoring starts.
         ui.message(_("Monitoreo de uso de Internet iniciado."))
 
     def reportUsage(self, stopMonitoring=False):
@@ -66,9 +68,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         current_bytes = psutil.net_io_counters().bytes_sent + psutil.net_io_counters().bytes_recv
         total_seconds = int(current_time - self.start_time)
         total_mb = (current_bytes - self.start_bytes) / (1024 * 1024)
+        # translators: Message announced when reporting internet usage, including the amount of data used and the duration of monitoring. Parameters are for data in megabytes and time in seconds.
         ui.message(_("Uso de Internet: {:.2f} MB, Tiempo: {} segundos").format(total_mb, total_seconds))
         if stopMonitoring:
             self.monitoring = False
+            # translators: Message announced when internet usage monitoring is stopped.
             ui.message(_("Monitoreo detenido."))
 
     def terminate(self):
