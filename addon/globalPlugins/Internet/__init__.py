@@ -2,6 +2,9 @@
 # Addon para NVDA que monitorea el uso de internet
 # Copyright (C) 2024 Ángel Alcantar <rayoalcantar@gmail.com>
 # This file is covered by the GNU General Public License.
+# Agradecimientos a Cary-rowen <manchen_0528@outlook.com>
+# Agradecimientos a hwf1324 <1398969445@qq.com>
+# creadores de objWatcher, de donde se tomó la idea para manejar las pulsaciones del atajo de teclado.
 
 import globalPluginHandler
 import globalVars
