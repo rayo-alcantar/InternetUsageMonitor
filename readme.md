@@ -8,9 +8,13 @@
 
 Una vez activado, **InternetUsageMonitor** comienza a rastrear el uso de datos de la conexión a internet del usuario. El seguimiento se inicia o se detiene mediante un atajo de teclado específico (`Alt + NVDA + W`) personalizable en gestos de entrada bajo la categoría InternetUsageMonitor.
 
-Al iniciar el monitoreo, el complemento registra el tiempo actual y la cantidad de datos enviados y recibidos en ese momento. Al detener el monitoreo, calcula la diferencia de tiempo y de datos para determinar el total de megabytes utilizados durante la sesión de monitoreo, y verbaliza esta información al usuario a través de NVDA.
+Al iniciar el monitoreo, se puede pulsar el mismo atajo y se dirá la cantidad de internet utilizado y el tiempo (sin detener el timer); si se pulsa 2 veces rápidamente se dirán los datos y se detendrá el monitoreo.
 
 ## Changelog
+
+### 2.0
+
+Se modifica la forma de funcionar del addon.
 
 ## 1.3.1
 
