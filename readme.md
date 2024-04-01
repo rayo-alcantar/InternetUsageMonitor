@@ -12,6 +12,11 @@ Al iniciar el monitoreo, se puede pulsar el mismo atajo y se dirá la cantidad d
 
 ## Changelog
 
+
+### 2.0.1
+
+Se modifica la forma de presentar el uso.
+
 ### 2.0
 
 Se modifica la forma de funcionar del addon.

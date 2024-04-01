@@ -63,18 +63,20 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         # translators: Message announced when internet usage monitoring starts.
         ui.message(_("Monitoreo de uso de Internet iniciado."))
 
+
     def reportUsage(self, stopMonitoring=False):
         current_time = time.time()
         current_bytes = psutil.net_io_counters().bytes_sent + psutil.net_io_counters().bytes_recv
         total_seconds = int(current_time - self.start_time)
+        total_minutes = total_seconds // 60  # Calcula los minutos totales desde los segundos
+        remaining_seconds = total_seconds % 60  # Calcula los segundos restantes después de convertir a minutos
         total_mb = (current_bytes - self.start_bytes) / (1024 * 1024)
-        # translators: Message announced when reporting internet usage, including the amount of data used and the duration of monitoring. Parameters are for data in megabytes and time in seconds.
-        ui.message(_("Uso de Internet: {:.2f} MB, Tiempo: {} segundos").format(total_mb, total_seconds))
+        #Translators: Explain that Internet usage will be reported in MB and time in minutes and seconds.
+        ui.message(_("Uso de Internet: {:.2f} MB, Tiempo: {} minutos y {} segundos").format(total_mb, total_minutes, remaining_seconds))
         if stopMonitoring:
             self.monitoring = False
-            # translators: Message announced when internet usage monitoring is stopped.
+            #Translators: Notifies the user that Internet usage monitoring has been stopped.
             ui.message(_("Monitoreo detenido."))
-
     def terminate(self):
         if self.monitoring:
             self.reportUsage(stopMonitoring=True)
