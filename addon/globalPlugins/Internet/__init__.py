@@ -29,52 +29,48 @@ def disableInSecureMode(decoratedCls):
 
 @disableInSecureMode
 class GlobalPlugin(globalPluginHandler.GlobalPlugin):
-    # translators: Category name for all scripts provided by the Internet Usage Monitor add-on.
-    scriptCategory = _("InternetUsageMonitor")
-    
+    scriptCategory = _("Internet usage monitor")
+
     def __init__(self):
         super(GlobalPlugin, self).__init__()
         self.monitoring = False
+        self.lastPressTime = 0
         self.start_time = None
         self.start_bytes = None
+        self.timer = None
 
     @scriptHandler.script(
-        # translators: Description for a script that toggles the monitoring of internet usage on or off.
-        description=_("Comienza o detiene el monitoreo del uso de internet."),
-        gesture="kb:alt+NVDA+w",
-        category=scriptCategory
+        description=_("Comienza a monitorear el uso de Internet o reporta el uso desde el inicio. Doble pulsación para detener."),
+        gesture="kb:alt+NVDA+w"
     )
     def script_toggleInternetUsageMonitor(self, gesture):
-        if not self.monitoring:
-            self.startMonitoring()
-        else:
-            self.stopMonitoring()
+        currentTime = time.time()
+        if currentTime - self.lastPressTime < 0.5:  # Doble pulsación
+            if self.monitoring:
+                self.reportUsage(stopMonitoring=True)
+        else:  # Pulsación simple
+            if not self.monitoring:
+                self.startMonitoring()
+            else:
+                self.reportUsage(stopMonitoring=False)
+        self.lastPressTime = currentTime
 
     def startMonitoring(self):
-        if self.monitoring:
-            return
         self.monitoring = True
         self.start_time = time.time()
         self.start_bytes = psutil.net_io_counters().bytes_sent + psutil.net_io_counters().bytes_recv
-        # translators: This message is announced when the internet usage monitoring starts.
-        ui.message(_("Monitoreo de uso de internet iniciado."))
+        ui.message(_("Monitoreo de uso de Internet iniciado."))
 
-    def stopMonitoring(self):
-        if not self.monitoring:
-            return
-        end_time = time.time()
-        end_bytes = psutil.net_io_counters().bytes_sent + psutil.net_io_counters().bytes_recv
-        total_bytes = end_bytes - self.start_bytes
-        total_mb = total_bytes / (1024 * 1024)
-        total_seconds = end_time - self.start_time
-        minutes = int(total_seconds // 60)
-        seconds = int(total_seconds % 60)
-        # translators: Announced to the user when the monitoring of internet usage stops, showing the total internet usage in megabytes and the duration in minutes and seconds.
-        ui.message(_("Total de uso de internet: {:.2f} MB en {} minutos y {} segundos.").format(total_mb, minutes, seconds))
-        self.monitoring = False
-        self.start_time = None
-        self.start_bytes = None
+    def reportUsage(self, stopMonitoring=False):
+        current_time = time.time()
+        current_bytes = psutil.net_io_counters().bytes_sent + psutil.net_io_counters().bytes_recv
+        total_seconds = int(current_time - self.start_time)
+        total_mb = (current_bytes - self.start_bytes) / (1024 * 1024)
+        ui.message(_("Uso de Internet: {:.2f} MB, Tiempo: {} segundos").format(total_mb, total_seconds))
+        if stopMonitoring:
+            self.monitoring = False
+            ui.message(_("Monitoreo detenido."))
 
     def terminate(self):
         if self.monitoring:
-            self.stopMonitoring()
+            self.reportUsage(stopMonitoring=True)
