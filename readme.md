@@ -12,6 +12,10 @@ Al iniciar el monitoreo, se puede pulsar el mismo atajo y se dirá la cantidad d
 
 ## Changelog
 
+### 2.1.1
+
+* Se traduce el compelmento al ucraniano, gracias a George-br.
+* 
 ### 2.1
 
 Se añade la funcionalidad para presentar correctamente las horas.
