@@ -1,0 +1,61 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
+"POT-Creation-Date: 2024-04-07 18:35+0300\n"
+"PO-Revision-Date: 2024-04-07 21:33+0300\n"
+"Last-Translator: Heorhii Halas <nvda.translation.uk@gmail.com>\n"
+"Language-Team: \n"
+"Language: uk_UA\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+"X-Poedit-Basepath: .\n"
+
+#. translators: Description for the script that toggles monitoring of internet usage. The script starts monitoring if it's not already happening, and stops it if it's in progress. A double press will stop the monitoring and report the usage.
+#: addon\globalPlugins\Internet\__init__.py:36
+msgid "Internet usage monitor"
+msgstr "Моніторинг використання Інтернету"
+
+#: addon\globalPlugins\Internet\__init__.py:47
+msgid ""
+"Comienza a monitorear el uso de Internet o reporta el uso desde el inicio. "
+"Doble pulsación para detener."
+msgstr ""
+"Почати моніторинг використання Інтернету або створити звіт про використання "
+"з самого початку. Двічі натисніть, щоб зупинити."
+
+#. translators: Message announced when internet usage monitoring starts.
+#: addon\globalPlugins\Internet\__init__.py:67
+msgid "Monitoreo de uso de Internet iniciado."
+msgstr "Моніторинг використання Інтернету розпочато."
+
+#. Translators: Message announced when internet usage is reported. Displays usage in MB, and time in hours, minutes, and seconds.
+#: addon\globalPlugins\Internet\__init__.py:82
+msgid "Uso de Internet: {:.2f} MB, Tiempo: {} horas, {} minutos y {} segundos"
+msgstr ""
+"Використання Інтернету: {:.2f} МБ, Час: {} годин, {} хвилин і {} секунд"
+
+#. Translators: Message announced when internet usage is reported. Displays usage in MB, and time in minutes and seconds.
+#: addon\globalPlugins\Internet\__init__.py:85
+msgid "Uso de Internet: {:.2f} MB, Tiempo: {} minutos y {} segundos"
+msgstr "Використання Інтернету: {:.2f} МБ, Час: {} хвилин і {} секунд"
+
+#. Translators: Notifies the user that Internet usage monitoring has been stopped.
+#: addon\globalPlugins\Internet\__init__.py:91
+msgid "Monitoreo detenido."
+msgstr "Моніторинг зупинено."
+
+#. Add-on summary, usually the user visible name of the addon.
+#. Translators: Summary for this add-on
+#. to be shown on installation and add-on information found in Add-ons Manager.
+#: buildVars.py:23
+msgid "InternetUsageMonitor"
+msgstr "InternetUsageMonitor"
+
+#. Add-on description
+#. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
+#: buildVars.py:26
+msgid "Complemento para NVDA que monitorea el uso de internet."
+msgstr "Додаток для NVDA, який відстежує використання Інтернету."
