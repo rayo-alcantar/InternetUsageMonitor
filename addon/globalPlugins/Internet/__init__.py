@@ -10,7 +10,12 @@ import globalPluginHandler
 import globalVars
 import scriptHandler
 import ui
+import tones
 import time
+import threading
+from .timer import Timer
+import wx
+import gui
 import addonHandler
 addonHandler.initTranslation()
 import sys
@@ -42,6 +47,9 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         self.start_time = None
         self.start_bytes = None
         self.timer = None
+        self.stop_thread = False
+        self.verify_thread = None
+        self.mb_limit = None
 
     @scriptHandler.script(
         description=_("Comienza a monitorear el uso de Internet o reporta el uso desde el inicio. Doble pulsación para detener."),
@@ -59,6 +67,50 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
                 self.reportUsage(stopMonitoring=False)
         self.lastPressTime = currentTime
 
+    @scriptHandler.script(
+        description=_("Lanza un diálogo para establecer un límite en mb en el que el usuario será avisado para que tome las acciones pertinentes."),
+        gesture="kb:shift+NVDA+w"
+    )
+    def script_setMbLimit(self, gesture):
+        dialog = wx.TextEntryDialog(
+            gui.mainFrame,
+            _("Ingrese el límite (en mb) de consumo de red para ser avisado:"),
+            _("Límite de consumo"),
+            ""
+        )
+        def callback(result):
+            if result == wx.ID_OK:
+                limit = dialog.GetValue()
+                self.mb_limit = int(limit)
+                self.verify_thread = threading.Thread(target=self.checkLimit)
+                self.verify_thread.start()
+                ui.message(_("Límite establecido correctamente."))
+
+        gui.runScriptModalDialog(dialog, callback)
+
+    def checkLimit(self):
+        if not self.monitoring or self.stop_thread:
+            return
+
+        verify = Timer()
+        beep = Timer()
+        needs_beep = False
+        while self.monitoring and not self.stop_thread:
+            if verify.elapsed(1, False):
+                verify.restart()
+                current_bytes = psutil.net_io_counters().bytes_sent + psutil.net_io_counters().bytes_recv
+                total_mb = (current_bytes - self.start_bytes) / (1024 * 1024)
+                needs_beep = total_mb >= self.mb_limit
+
+            if needs_beep and beep.elapsed(30, False):
+                beep.restart()
+                for x in range(0, 4):
+                    tones.beep(500, 50)
+
+                ui.message(_("¡Has alcanzado el límite de consumo establecido!"))
+
+            time.sleep(0.005)
+            
     def startMonitoring(self):
         self.monitoring = True
         self.start_time = time.time()
