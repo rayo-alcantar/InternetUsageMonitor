@@ -87,8 +87,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         )
         def callback(result):
             if result == wx.ID_OK:
-                limit = dialog.GetValue()
-                self.mb_limit = int(limit)
+                limit = int(dialog.GetValue())
+                if limit <= 0:
+                    ui.message(_("Ingrese un límite válido (mayor a 0)."))
+                    return
+
+                self.mb_limit = limit
                 self.verify_thread = threading.Thread(target=self.checkLimit)
                 self.verify_thread.start()
                 # Translators: Message that indicates to the user that the network consumption limit has been set correctly.
