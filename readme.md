@@ -10,7 +10,18 @@ Una vez activado, **InternetUsageMonitor** comienza a rastrear el uso de datos d
 
 Al iniciar el monitoreo, se puede pulsar el mismo atajo y se dirá la cantidad de internet utilizado y el tiempo (sin detener el timer); si se pulsa 2 veces rápidamente se dirán los datos y se detendrá el monitoreo.
 
+También gracias a [Ángel Reyes](https://github.com/reyes2005)
+Se añade la opción para monitorear el uso de internet.
+
+* Gesto modificable en gestos de entrada. shift + NVDA + w. despliega la interfaz para colocar el límite en mb.
+* Al llegar al límite, se lanzará una alerta en voz y texto de que se ha alcanzado el límite cada 30 segundos.
+* Para detener, hay que parar el monitoreo.
+
 ## Changelog
+
+### 2.2
+
+* Se añade opción de alertas gracias a [Ángel Reyes](https://github.com/reyes2005)
 
 ### 2.1.1
 
