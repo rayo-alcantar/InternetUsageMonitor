@@ -72,9 +72,16 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         gesture="kb:shift+NVDA+w"
     )
     def script_setMbLimit(self, gesture):
+        if not self.monitoring:
+            # Translators: Error message to warn the user to start monitoring first before setting an mb limit.
+            ui.message(_("Es necesario iniciar el monitoreo primero."))
+            return
+
         dialog = wx.TextEntryDialog(
             gui.mainFrame,
-            _("Ingrese el límite (en mb) de consumo de red para ser avisado:"),
+            # Translators: Text box title where the user is asked to enter the consumption limit in mb.
+            _("Ingrese el límite (en mb) de consumo de red para ser advertido:"),
+            # Translators: Dialog title where the text box will be contained.
             _("Límite de consumo"),
             ""
         )
@@ -84,14 +91,12 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
                 self.mb_limit = int(limit)
                 self.verify_thread = threading.Thread(target=self.checkLimit)
                 self.verify_thread.start()
+                # Translators: Message that indicates to the user that the network consumption limit has been set correctly.
                 ui.message(_("Límite establecido correctamente."))
 
         gui.runScriptModalDialog(dialog, callback)
 
     def checkLimit(self):
-        if not self.monitoring or self.stop_thread:
-            return
-
         verify = Timer()
         beep = Timer()
         needs_beep = False
@@ -104,12 +109,11 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
 
             if needs_beep and beep.elapsed(30, False):
                 beep.restart()
-                for x in range(0, 4):
-                    tones.beep(500, 50)
-
+                tones.beep(100, 150)
+                # Translators: Warning message to the user that has reached the previously established limit, this will be repeated every 30 seconds until monitoring is deactivated.
                 ui.message(_("¡Has alcanzado el límite de consumo establecido!"))
 
-            time.sleep(0.005)
+            time.sleep(0.05)
             
     def startMonitoring(self):
         self.monitoring = True
@@ -141,7 +145,18 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
             self.monitoring = False
             # Translators: Notifies the user that Internet usage monitoring has been stopped.
             ui.message(_("Monitoreo detenido."))
+            if self.verify_thread is not None:
+                self.stop_thread = True
+                self.verify_thread = None
+                self.stop_thread = False
+                self.mb_limit = None
 
     def terminate(self):
         if self.monitoring:
             self.reportUsage(stopMonitoring=True)
+
+        if self.verify_thread is not None:
+            self.stop_thread = True
+            self.verify_thread = None
+            self.stop_thread = False
+            self.mb_limit = None
