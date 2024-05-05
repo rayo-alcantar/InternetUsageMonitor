@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: InternetUsageMonitor 2.0.1\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2024-04-07 18:35+0300\n"
-"PO-Revision-Date: 2024-04-17 10:22+0300\n"
+"POT-Creation-Date: 2024-05-05 09:23-0600\n"
+"PO-Revision-Date: 2024-05-05 09:25-0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -16,15 +16,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-Basepath: .\n"
 
 #. translators: Description for the script that toggles monitoring of internet usage. The script starts monitoring if it's not already happening, and stops it if it's in progress. A double press will stop the monitoring and report the usage.
-#: addon\globalPlugins\Internet\__init__.py:36
+#: addon\globalPlugins\Internet\__init__.py:41
 msgid "Internet usage monitor"
 msgstr "Internet usage monitor"
 
-#: addon\globalPlugins\Internet\__init__.py:47
+#: addon\globalPlugins\Internet\__init__.py:55
 msgid ""
 "Comienza a monitorear el uso de Internet o reporta el uso desde el inicio. "
 "Doble pulsación para detener."
@@ -32,35 +32,72 @@ msgstr ""
 "Start monitoring Internet usage or reporting usage from the start. Double "
 "press to stop."
 
+#: addon\globalPlugins\Internet\__init__.py:71
+msgid ""
+"Lanza un diálogo para establecer un límite en mb en el que el usuario será "
+"avisado para que tome las acciones pertinentes."
+msgstr ""
+"Launches a dialog to establish a limit in mb at which the user will be "
+"notified to take the appropriate actions."
+
+#. Translators: Error message to warn the user to start monitoring first before setting an mb limit.
+#: addon\globalPlugins\Internet\__init__.py:77
+msgid "Es necesario iniciar el monitoreo primero."
+msgstr "It is necessary to start monitoring first."
+
+#. Translators: Text box title where the user is asked to enter the consumption limit in mb.
+#: addon\globalPlugins\Internet\__init__.py:83
+msgid "Ingrese el límite (en mb) de consumo de red para ser advertido:"
+msgstr "Enter the network consumption limit (in mb) to be warned:"
+
+#. Translators: Dialog title where the text box will be contained.
+#: addon\globalPlugins\Internet\__init__.py:85
+msgid "Límite de consumo"
+msgstr "Consumption limit"
+
+#: addon\globalPlugins\Internet\__init__.py:92
+msgid "Ingrese un límite válido (mayor a 0)."
+msgstr "Enter a valid limit (greater than 0)."
+
+#. Translators: Message that indicates to the user that the network consumption limit has been set correctly.
+#: addon\globalPlugins\Internet\__init__.py:99
+msgid "Límite establecido correctamente."
+msgstr "Limit set correctly."
+
+#. Translators: Warning message to the user that has reached the previously established limit, this will be repeated every 30 seconds until monitoring is deactivated.
+#: addon\globalPlugins\Internet\__init__.py:118
+msgid "¡Has alcanzado el límite de consumo establecido!"
+msgstr "You have reached the established consumption limit!"
+
 #. translators: Message announced when internet usage monitoring starts.
-#: addon\globalPlugins\Internet\__init__.py:67
+#: addon\globalPlugins\Internet\__init__.py:127
 msgid "Monitoreo de uso de Internet iniciado."
 msgstr "Internet usage monitoring started."
 
 #. Translators: Message announced when internet usage is reported. Displays usage in MB, and time in hours, minutes, and seconds.
-#: addon\globalPlugins\Internet\__init__.py:82
+#: addon\globalPlugins\Internet\__init__.py:142
 msgid "Uso de Internet: {:.2f} MB, Tiempo: {} horas, {} minutos y {} segundos"
 msgstr "Internet Usage: {:.2f} MB, Time: {} hours, {} minutes and {} seconds"
 
 #. Translators: Message announced when internet usage is reported. Displays usage in MB, and time in minutes and seconds.
-#: addon\globalPlugins\Internet\__init__.py:85
+#: addon\globalPlugins\Internet\__init__.py:145
 msgid "Uso de Internet: {:.2f} MB, Tiempo: {} minutos y {} segundos"
 msgstr "Internet Usage: {:.2f} MB, Time: {} minutes and {} seconds"
 
 #. Translators: Notifies the user that Internet usage monitoring has been stopped.
-#: addon\globalPlugins\Internet\__init__.py:91
+#: addon\globalPlugins\Internet\__init__.py:151
 msgid "Monitoreo detenido."
 msgstr "Stopped monitoring."
 
 #. Add-on summary, usually the user visible name of the addon.
 #. Translators: Summary for this add-on
 #. to be shown on installation and add-on information found in Add-ons Manager.
-#: buildVars.py:23
+#: buildVars.py:24
 msgid "InternetUsageMonitor"
 msgstr "InternetUsageMonitor"
 
 #. Add-on description
 #. Translators: Long description to be shown for this add-on on add-on information from add-ons manager
-#: buildVars.py:26
+#: buildVars.py:27
 msgid "Complemento para NVDA que monitorea el uso de internet."
 msgstr "This addon for NVDA allows you to monitor internet usage."

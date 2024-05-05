@@ -1,5 +1,9 @@
 ﻿## Changelog
 
+### 2.2
+
+Se añade funcionalidad para disparar alertas.
+
 ### 2.1
 
 Se añade la funcionalidad para presentar correctamente las horas.
