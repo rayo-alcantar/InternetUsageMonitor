@@ -10,7 +10,12 @@ import globalPluginHandler
 import globalVars
 import scriptHandler
 import ui
+import tones
 import time
+import threading
+from .timer import Timer
+import wx
+import gui
 import addonHandler
 addonHandler.initTranslation()
 import sys
@@ -42,6 +47,9 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         self.start_time = None
         self.start_bytes = None
         self.timer = None
+        self.stop_thread = False
+        self.verify_thread = None
+        self.mb_limit = None
 
     @scriptHandler.script(
         description=_("Comienza a monitorear el uso de Internet o reporta el uso desde el inicio. Doble pulsación para detener."),
@@ -59,6 +67,58 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
                 self.reportUsage(stopMonitoring=False)
         self.lastPressTime = currentTime
 
+    @scriptHandler.script(
+        description=_("Lanza un diálogo para establecer un límite en mb en el que el usuario será avisado para que tome las acciones pertinentes."),
+        gesture="kb:shift+NVDA+w"
+    )
+    def script_setMbLimit(self, gesture):
+        if not self.monitoring:
+            # Translators: Error message to warn the user to start monitoring first before setting an mb limit.
+            ui.message(_("Es necesario iniciar el monitoreo primero."))
+            return
+
+        dialog = wx.TextEntryDialog(
+            gui.mainFrame,
+            # Translators: Text box title where the user is asked to enter the consumption limit in mb.
+            _("Ingrese el límite (en mb) de consumo de red para ser advertido:"),
+            # Translators: Dialog title where the text box will be contained.
+            _("Límite de consumo"),
+            ""
+        )
+        def callback(result):
+            if result == wx.ID_OK:
+                limit = int(dialog.GetValue())
+                if limit <= 0:
+                    ui.message(_("Ingrese un límite válido (mayor a 0)."))
+                    return
+
+                self.mb_limit = limit
+                self.verify_thread = threading.Thread(target=self.checkLimit)
+                self.verify_thread.start()
+                # Translators: Message that indicates to the user that the network consumption limit has been set correctly.
+                ui.message(_("Límite establecido correctamente."))
+
+        gui.runScriptModalDialog(dialog, callback)
+
+    def checkLimit(self):
+        verify = Timer()
+        beep = Timer()
+        needs_beep = False
+        while self.monitoring and not self.stop_thread:
+            if verify.elapsed(1, False):
+                verify.restart()
+                current_bytes = psutil.net_io_counters().bytes_sent + psutil.net_io_counters().bytes_recv
+                total_mb = (current_bytes - self.start_bytes) / (1024 * 1024)
+                needs_beep = total_mb >= self.mb_limit
+
+            if needs_beep and beep.elapsed(30, False):
+                beep.restart()
+                tones.beep(100, 150)
+                # Translators: Warning message to the user that has reached the previously established limit, this will be repeated every 30 seconds until monitoring is deactivated.
+                ui.message(_("¡Has alcanzado el límite de consumo establecido!"))
+
+            time.sleep(0.05)
+            
     def startMonitoring(self):
         self.monitoring = True
         self.start_time = time.time()
@@ -89,7 +149,18 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
             self.monitoring = False
             # Translators: Notifies the user that Internet usage monitoring has been stopped.
             ui.message(_("Monitoreo detenido."))
+            if self.verify_thread is not None:
+                self.stop_thread = True
+                self.verify_thread = None
+                self.stop_thread = False
+                self.mb_limit = None
 
     def terminate(self):
         if self.monitoring:
             self.reportUsage(stopMonitoring=True)
+
+        if self.verify_thread is not None:
+            self.stop_thread = True
+            self.verify_thread = None
+            self.stop_thread = False
+            self.mb_limit = None
