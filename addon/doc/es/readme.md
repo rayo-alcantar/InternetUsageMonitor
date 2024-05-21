@@ -19,6 +19,10 @@ Se añade la opción para monitorear el uso de internet.
 
 ## Changelog
 
+### 2.3
+
+* Se actualiza la traducción al ucraniano
+
 ### 2.2
 
 * Se añade opción de alertas gracias a [Ángel Reyes](https://github.com/reyes2005)

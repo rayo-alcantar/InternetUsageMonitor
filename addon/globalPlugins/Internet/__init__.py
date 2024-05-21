@@ -130,19 +130,25 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
         current_time = time.time()
         current_bytes = psutil.net_io_counters().bytes_sent + psutil.net_io_counters().bytes_recv
         total_seconds = int(current_time - self.start_time)
-        
+    
         # Convert total time to hours, minutes, and seconds
         hours, remainder = divmod(total_seconds, 3600)
         minutes, seconds = divmod(remainder, 60)
         total_mb = (current_bytes - self.start_bytes) / (1024 * 1024)
+    
+        if total_mb >= 1000:
+            total_gb = total_mb / 1024
+            usage = "{:.2f} GB".format(total_gb)
+        else:
+            usage = "{:.2f} MB".format(total_mb)
         
         # Check if the total time is more than an hour for reporting
         if hours > 0:
-            # Translators: Message announced when internet usage is reported. Displays usage in MB, and time in hours, minutes, and seconds.
-            message = _("Uso de Internet: {:.2f} MB, Tiempo: {} horas, {} minutos y {} segundos").format(total_mb, hours, minutes, seconds)
+            # Translators: Message announced when internet usage is reported. Displays usage in appropriate units, and time in hours, minutes, and seconds.
+            message = _("Uso de Internet: {}, Tiempo: {} horas, {} minutos y {} segundos").format(usage, hours, minutes, seconds)
         else:
-            # Translators: Message announced when internet usage is reported. Displays usage in MB, and time in minutes and seconds.
-            message = _("Uso de Internet: {:.2f} MB, Tiempo: {} minutos y {} segundos").format(total_mb, minutes, seconds)
+            # Translators: Message announced when internet usage is reported. Displays usage in appropriate units, and time in minutes and seconds.
+            message = _("Uso de Internet: {}, Tiempo: {} minutos y {} segundos").format(usage, minutes, seconds)
         
         ui.message(message)
         if stopMonitoring:
@@ -154,7 +160,7 @@ class GlobalPlugin(globalPluginHandler.GlobalPlugin):
                 self.verify_thread = None
                 self.stop_thread = False
                 self.mb_limit = None
-
+    
     def terminate(self):
         if self.monitoring:
             self.reportUsage(stopMonitoring=True)
