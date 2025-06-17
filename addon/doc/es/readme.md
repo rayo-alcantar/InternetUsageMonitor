@@ -22,6 +22,7 @@ Se añade la opción para monitorear el uso de internet.
 ### 2.3
 
 * Se actualiza la traducción al ucraniano
+* Se añade para que sea capaz de verbalizar en gb al sobrepasar los 1000mb.
 
 ### 2.2
 
