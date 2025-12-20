@@ -31,7 +31,7 @@ Se añade la opción para monitorear el uso de internet.
 ### 2.1.1
 
 * Se traduce el compelmento al ucraniano, gracias a George-br.
-* Se traduce el compelmento al ruso, gracias a Kostenkov-2021.
+* Se traduce el compelmento al ruso, gracias a [Danil Kostenkov](https://github.com/Kostenkov-2021).
 
 ### 2.1
 

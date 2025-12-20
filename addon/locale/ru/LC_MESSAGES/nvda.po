@@ -5,17 +5,18 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: InternetUsageMonitor 2.0.1\n"
+"Project-Id-Version: InternetUsageMonitor 2.3\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2024-05-19 13:34+0300\n"
-"PO-Revision-Date: 2024-05-19 13:43+0300\n"
+"POT-Creation-Date: 2025-12-20 23:50+0300\n"
+"PO-Revision-Date: 2025-12-20 23:55+0300\n"
 "Last-Translator: Danil Kostenkov <danilkostenkov38@gmail.com>\n"
-"Language-Team: \n"
+"Language-Team: Russian translation team <nvda.ru>, Danil Kostenkov "
+"<danilkostenkov38@gmail.com>\n"
 "Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.8\n"
 "X-Poedit-Basepath: ../../../..\n"
 "X-Poedit-SearchPath-0: addon/globalPlugins/Internet\n"
 "X-Poedit-SearchPath-1: addon/installTasks.py\n"
@@ -30,8 +31,8 @@ msgid ""
 "Comienza a monitorear el uso de Internet o reporta el uso desde el inicio. "
 "Doble pulsación para detener."
 msgstr ""
-"Запускает отслеживание использования Интернета или сообщает об "
-"использовании с самого начала. Дважды нажмите, чтобы остановить."
+"Запускает отслеживание использования Интернета или сообщает об использовании "
+"с самого начала. Дважды нажмите, чтобы остановить."
 
 #: addon/globalPlugins/Internet/__init__.py:71
 msgid ""
@@ -70,16 +71,17 @@ msgstr "Вы достигли установленного лимита потр
 msgid "Monitoreo de uso de Internet iniciado."
 msgstr "Мониторинг использования Интернета запущен."
 
-#: addon/globalPlugins/Internet/__init__.py:142
-msgid "Uso de Internet: {:.2f} MB, Tiempo: {} horas, {} minutos y {} segundos"
-msgstr ""
-"Использование Интернета: {:.2f} МБ, Время: {} часов, {} минут и {} секунд"
-
-#: addon/globalPlugins/Internet/__init__.py:145
-msgid "Uso de Internet: {:.2f} MB, Tiempo: {} minutos y {} segundos"
-msgstr "Использование Интернета: {:.2f} МБ, время: {} минут и {} секунд"
+#: addon/globalPlugins/Internet/__init__.py:148
+#, python-brace-format
+msgid "Uso de Internet: {}, Tiempo: {} horas, {} minutos y {} segundos"
+msgstr "Использование Интернета: {}, Время: {} часов, {} минут и {} секунд"
 
 #: addon/globalPlugins/Internet/__init__.py:151
+#, python-brace-format
+msgid "Uso de Internet: {}, Tiempo: {} minutos y {} segundos"
+msgstr "Использование Интернета: {}, Время: {} минут и {} секунд"
+
+#: addon/globalPlugins/Internet/__init__.py:157
 msgid "Monitoreo detenido."
 msgstr "Мониторинг остановлен."
 
@@ -96,8 +98,8 @@ msgid ""
 "sitio web de PayPal."
 msgstr ""
 "Internet Usage Monitor - это бесплатное дополнение для NVDA.\n"
-"Вы можете сделать пожертвование Анхелю Алькантару, чтобы помочь в "
-"дальнейшем развитии этого дополнения.\n"
+"Вы можете сделать пожертвование Анхелю Алькантару, чтобы помочь в дальнейшем "
+"развитии этого дополнения.\n"
 "Вы хотите сделать пожертвование сейчас? Для совершения транзакции вы будете "
 "перенаправлены на веб-сайт PayPal."
 
