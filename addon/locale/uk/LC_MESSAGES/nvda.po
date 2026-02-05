@@ -7,15 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: InternetUsageMonitor 2.0.1\n"
 "Report-Msgid-Bugs-To: 'nvda-translations@groups.io'\n"
-"POT-Creation-Date: 2024-05-07 08:52+0300\n"
-"PO-Revision-Date: 2024-05-07 08:57+0300\n"
+"POT-Creation-Date: 2024-05-22 15:10+0300\n"
+"PO-Revision-Date: 2024-05-22 15:11+0300\n"
 "Last-Translator: Heorhii Halas <nvda.translation.uk@gmail.com>\n"
 "Language-Team: \n"
 "Language: uk_UA\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.2\n"
+"X-Generator: Poedit 3.4.4\n"
 "X-Poedit-Basepath: .\n"
 
 #. translators: Description for the script that toggles monitoring of internet usage. The script starts monitoring if it's not already happening, and stops it if it's in progress. A double press will stop the monitoring and report the usage.
@@ -73,19 +73,18 @@ msgstr "Ви досягли встановленого ліміту спожив
 msgid "Monitoreo de uso de Internet iniciado."
 msgstr "Моніторинг використання Інтернету розпочато."
 
-#. Translators: Message announced when internet usage is reported. Displays usage in MB, and time in hours, minutes, and seconds.
-#: addon\globalPlugins\Internet\__init__.py:142
-msgid "Uso de Internet: {:.2f} MB, Tiempo: {} horas, {} minutos y {} segundos"
-msgstr ""
-"Використання Інтернету: {:.2f} МБ, Час: {} годин, {} хвилин і {} секунд"
+#. Translators: Message announced when internet usage is reported. Displays usage in appropriate units, and time in hours, minutes, and seconds.
+#: addon\globalPlugins\Internet\__init__.py:148
+msgid "Uso de Internet: {}, Tiempo: {} horas, {} minutos y {} segundos"
+msgstr "Використання Інтернету: {}, час: {} годин, {} хвилин і {} секунд"
 
-#. Translators: Message announced when internet usage is reported. Displays usage in MB, and time in minutes and seconds.
-#: addon\globalPlugins\Internet\__init__.py:145
-msgid "Uso de Internet: {:.2f} MB, Tiempo: {} minutos y {} segundos"
-msgstr "Використання Інтернету: {:.2f} МБ, Час: {} хвилин і {} секунд"
+#. Translators: Message announced when internet usage is reported. Displays usage in appropriate units, and time in minutes and seconds.
+#: addon\globalPlugins\Internet\__init__.py:151
+msgid "Uso de Internet: {}, Tiempo: {} minutos y {} segundos"
+msgstr "Використання Інтернету: {}, час: {} хвилин і {} секунд"
 
 #. Translators: Notifies the user that Internet usage monitoring has been stopped.
-#: addon\globalPlugins\Internet\__init__.py:151
+#: addon\globalPlugins\Internet\__init__.py:157
 msgid "Monitoreo detenido."
 msgstr "Моніторинг зупинено."
 
